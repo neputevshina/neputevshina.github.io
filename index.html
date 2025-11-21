@@ -1,7 +1,59 @@
 <!DOCTYPE html>
 <head>
-	
+  <title>neputan machine</title>
+  <style> 
+  body {
+    font-family: sans-serif
+  }
+  p {
+    margin: 0;
+  }
+  .pos {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    gap: 12px;
+    margin-left: 24px;
+    max-width: 640px;
+  }
+  </style>
 </head>
 <body>
-	
+  <div class="pos">
+      <div style="margin-top: 24px"></div>
+      <h1>neputevshina</h1>
+      <p>Currently either dead, in jail or conscripted. Still in Russia. Probably couldn't leave it for a very long time.</p>
+      <div style="margin-top: 0px"></div>
+      <p><b>Mastodon:</b> <a href="https://mas.to/@neputevshina">@neputevshina@mas.to</a></p>
+      <p><b>Telegram (anon bot):</b> <a href="https://t.me/anonaskbot?start=35rMs3wOv33W5hO">https://t.me/anonaskbot?start=35rMs3wOv33W5hO</a></p>
+      <p>I have some WIP experimental notes I wanted to finish and publish for a long time, but they are all unfinished and I don't have time to finish them.</p>
+      <p>I feel psychological pressure from unknown persons and I feel that I will be prosecuted soon.</p>
+      <div>
+        <h2>Implementing reassigned spectrogram</h2>
+        <p>TODO 20250814</p>
+        <ul>
+          <li> Formulas in Auger & Flandrin original paper are more concise </li>
+          <li> Time displacement must be divided by 2×pi. If you haven't got it working, that's why.</li>
+          <li> Multiplier in time window is the time scale. If you're using window size it will be in samples. You can also use overlap factor so reassigned time scale will be in frames. </li>
+          <li> Formulas for implementing TFR with “flattened” complex math. </li>
+          <li> TFR is invertible if you are using it to derive some mask. Just remember original bin time-frequency coordinates for each point. This property can be used for source separation purposes, for example. One probably can derive a HTDemucs-like architecture, but instead of double time-frequency domain processing make it «glow» only certain points for each of the source types. </li>
+          <li> Example of de-speckling the spectrum with inversion in C++. </li>
+          <li> TODO TFR and zero-padding. </li>
+        </ul>
+      </div>
+      <div>
+        <h2>Simple tonal-noisy separation method</h2>
+        <p>TODO 20250814</p>
+        <ul>
+          <li> Observation that normalization of 512-point FFT results in clear visibility of instantaneous frequency ridges in 8192-point spectrogram (image) </li>
+          <li> Implementation in Pure Data </li>
+          <li> Cepstral blur, but for renormalized spectrum. Other types of blur are hard without externals, so they can not be used in Plugdata in plugin mode, lowering practical effect </li>
+          <li> Lower sensitivity to higher frequencies </li>
+          <li> Sound examples </li>
+          <li> Implementation in C++ with log-frequency blur with a one-pole filter. Sound examples of this one </li>
+          <li> Other ways to achieve SNT. Reassigned spectrum as a way to lower latency. </li>
+        </ul>
+      </div>
+    </div>
 </body>
