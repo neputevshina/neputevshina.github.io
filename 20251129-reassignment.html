@@ -1,0 +1,23 @@
+<!DOCTYPE html><head><title>Implementing reassigned spectrogram</title><link rel="stylesheet" type="text/css" href="general.css">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script></head><body><div><h1>Implementing reassigned spectrogram</h1><p>Started 20250814</p><p>Continued 20251129</p><p> <a href="https://arxiv.org/abs/0903.3080">Time-frequency reassignment</a> is a method of correcting the vertical and horizontal positions of points on a 
+time-frequency grid of a generic short-time Fourier transform. 
+In simple words, on a reassigned spectrogram you will see a straight line from 
+a pure tone, instead of a «sausage» where center of it is a desired frequency.</p><p> You can find it in some quality spectrum analyzers. For example <a href="https://www.image-line.com/fl-studio-learning/fl-studio-online-manual/html/plugins/Wave%20Candy.htm">Wave Candy</a> in FL Studio uses it in it's «Enhanced frequency» mode. Also <a href="https://www.tritik.com/product/visu/">Visu</a> and <a href="https://minimeters.app/">MiniMeters</a> are using this method to enhance resolution.
+Though I think Wave Candy uses the phase information directly to do it's corrections 
+(like a phase vocoder), which does not require even using more than one FFT.</p><p> The method itself is really simple. You just use two more FFTs with two different windows
+on an original audio frame you took for an analysis, do some complex divisions and
+there you are. The formulas in Fitz & Fullop are needlessly expanded from their 
+simple complex forms, and if your language supports complex math you can just use
+them directly from the referenced <a href="https://hal.science/hal-00414583/document">Auger & Flandrin paper</a>:</p><p>$$\delta_t = -\mathrm{Im}\left({X_d \over X}\right) $$</p><p>$$\delta_\omega = \mathrm{Re}\left({X_t \over X}\right) $$</p><p> Except in practice, time displacement must be divided by 2π, and multiplier in time window 
+\(\left(X_t\right)\) is given in samples if you're multiplied the time ramp by nfft as 
+described in papers. 
+You can also multiply the time ramp by overlap factor instead of nfft and 
+the reassigned time will be in frames.</p><ul><li> Time displacement must be divided by 2×pi. 
+If you haven't got it working, that's why.</li><li> Multiplier in time window is the time scale. 
+If you're using window size it will be in samples. 
+You can also use overlap factor so reassigned time scale will be in frames.</li><li> Formulas for implementing TFR with “flattened” complex math.</li><li> TFR is invertible if you are using it to derive some mask. 
+Just remember original bin time-frequency coordinates for each point. 
+This property can be used for source separation purposes, for example. 
+One probably can derive a HTDemucs-like architecture, 
+but instead of double time-frequency domain processing make it «glow» 
+only certain points for each of the source types.</li><li> Example of de-speckling the spectrum with inversion in C++.</li></ul></div></body>

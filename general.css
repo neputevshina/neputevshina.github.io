@@ -1,0 +1,16 @@
+body {
+  font-family: sans-serif
+}
+p {
+  margin: 0;
+}
+body>div {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  gap: 12px;
+  margin-left: 24px;
+  max-width: 640px;
+}
