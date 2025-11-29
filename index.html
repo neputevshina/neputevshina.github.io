@@ -15,17 +15,7 @@
     <p>I feel psychological pressure from unknown persons and I feel that I will be prosecuted soon.</p>
     <p>I have some WIP notes on DSP and spectral audio processing I wanted to publish for a long time, but they are all unfinished and I don't have time to finish them.</p>
     <div>
-      <h2>Implementing reassigned spectrogram</h2>
-      <p>TODO 20250814</p>
-      <ul>
-        <li> Formulas in Auger & Flandrin original paper are more concise </li>
-        <li> Time displacement must be divided by 2×pi. If you haven't got it working, that's why.</li>
-        <li> Multiplier in time window is the time scale. If you're using window size it will be in samples. You can also use overlap factor so reassigned time scale will be in frames. </li>
-        <li> Formulas for implementing TFR with “flattened” complex math. </li>
-        <li> TFR is invertible if you are using it to derive some mask. Just remember original bin time-frequency coordinates for each point. This property can be used for source separation purposes, for example. One probably can derive a HTDemucs-like architecture, but instead of double time-frequency domain processing make it «glow» only certain points for each of the source types. </li>
-        <li> Example of de-speckling the spectrum with inversion in C++. </li>
-        <li> TODO TFR and zero-padding. </li>
-      </ul>
+      <a href="20251129-reassignment.html"><h2>Implementing reassigned spectrogram</h2></a>
     </div>
     <div>
       <h2>Simple tonal-noisy separation method</h2>
