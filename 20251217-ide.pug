@@ -1,0 +1,71 @@
+doctype html
+
+- var title = "Assorted thoughts on IDE features, that must've been available for 10 years now"
+
+head
+	title #{title}
+	<link rel="stylesheet" type="text/css" href="general.css">
+	<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+body
+	div
+		h1 #{title}
+		h2 CRDT-based document history
+		p 
+			| Because Git sucks. 
+			| Will allow late commits (commiting the past) and live collaborative editing of the code.
+			| No edit will be lost.
+			| A major topic that is a food for thought by itself.
+		h2 Painting over document
+		p 
+			| Just give the user brush, colors and eraser. Anchor drawings to the nearest line of code. 
+			| Version control them.
+			| Will significantly assist in developing and debugging algorithms.
+		h2 Graphical debugging and oscillocsopes
+		ul
+			li Indispensable in audio DSP work.
+			li An IDE may work like a Unity/Godot editor and provide own framebuffer to application for ease of prototyping.
+			li 
+				a(href="https://marketplace.visualstudio.com/items?itemName=AdamWulkiewicz.GraphicalDebugging") For Visual Studio.
+			li 
+				| Oscilloscopes are external libraries that communicate with an IDE to provide inline oscilloscope of 
+				| recorded in the current debug session values. 
+				| An oscilloscope may be a function taking any value. 
+				| An IDE may provide a way to filter and display a graph with value of the specific field in given structs.
+		h2 Code bubbles
+		ul
+			li To make more efficient use of screen space.
+			li
+				a(href="https://www.youtube.com/watch?v=PsPX0nElJ0k") Original Code Bubbles editor
+			li 
+				a(href="https://www.youtube.com/watch?v=c2uZnR5D_cc") Haystack editor — code bubbles for VSCode (ded((( )
+		h2 Programmable search and replace
+		ul
+			li Commands of vi/vim.
+			li Structural regexps of sam/acme.
+			li Syntax-aware rewrite by example.
+		h2 Elastic tabstops
+		ul
+			li To unify text and tables so all text-based features can be used on table data.
+			li 
+				a(href="https://nick-gravgaard.com/elastic-tabstops/") Original proposing blog article.
+			li
+				a(href="https://github.com/nick-gravgaard/AlwaysAlignedVS") Again, Visual Studio exclusive extension.
+		h2 Trivial extensibility
+		p 
+			| A plugin in its simplest form must be a file in the specified directory of other plugins like it.
+			| An IDE must
+			b  know
+			|  and
+			b  suggest
+			|  its API to the plugin developer.
+
+		h2 Points of interest
+		ul
+			li 
+				a(href="https://github.com/lite-xl/lite-xl") Lite-XL, a good candidate for implementing these ideas
+			li 
+				a(href="https://www.inkandswitch.com/patchwork") Ink&Switch's Patchwork
+			li 
+				a(href="https://www.flinto.com/") Flinto
+			li 
+				a(href="https://github.com/tonsky/Clojure-Sublimed") Clojure Sublimed
